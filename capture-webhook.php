@@ -3,9 +3,10 @@
 // to a mysql database table.  The code is not guaranteed to work for your use case and Zippykind doesn't offer any warranties 
 // or guarantees on this code provided!
 
-$servername = "localhost";
-$username = "root";
-$password = "password";
+$servername = "YOUR_DB_SERVER";  // Most hosting environments allow you to use localhost
+$dbname = "YOUR_DB_NAME";
+$username = "YOUR_DB_USERNAME";
+$password = "YOUR_DB_PASSWORD";
 
 // Takes raw data from the WebHook request
 $request_json = file_get_contents('php://input');
@@ -35,7 +36,7 @@ $driver_location_lng=$webhook_data->driver_location_lng;
 
 // Insert data into mysql database table
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=zippy_kind_v2", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "INSERT INTO zippykind_webhook_data (
